@@ -1,1 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="ey.css">
+    
+</head>
+<body>
+    <div class="form-container">
+        <h1>Registration Form</h1>
+        <p style="text-align: center; color: rgb(0, 0, 0); margin-bottom: 30px;">
+            <strong> Age Requiremnet: 21 years and above onlya</strong>
+        </p>
 
+        <form id="registrationForm" onsubmit="validateForm(event)">
+            <div class="form-group">
+                <label for="firstName">First Name *</label>
+                <input type="text" id="firstName" name="firstName" required>
+                <div class="Requiremnet"><strong>No special characters allowed.</strong></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="middleName">Middle Name</label>
+                <input type="text" id="middleName" name="middleName">
+                <div class="Requiremnet"><strong>No special characters allowed.</strong></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="lastName">Last Name *</label>
+                <input type="text" id="lastName" name="lastName" required>
+                <div class="Requiremnet"><strong>No special characters allowed.</strong></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" name="dob" required>
+                <div class="Requiremnet"><strong>Must be 21 years or older.</strong></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input type="password" id="password" name="password" required>
+                <div class="Requiremnet"><strong>Minimum of 8 characters required.</strong></div>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="ConfirmPassword">Confirm Password *</label>
+                <input type="password" id="ConfirmPassword" name="ConfirmPassword" required>
+                <div class="Requiremnet"><strong>Must match the pasword above.</strong></div>
+            </div>
+
+            <button type="submit" class="submit-btn">Register</button>
+        </form>
+    </div>
+    <script>
+    alert("Welcome to this Page MotherFather")
+    function validateForm(event) 
+{
+    event.preventDefault();
+
+    const firstName = document.getElementById("firstName").value.trim();
+    const middleName = document.getElementById("middleName").value.trim();
+    const lastName = document.getElementById("lastName").value.trim();
+    const dob = document.getElementById("dob").value;
+    const email = document.getElementById("email").value.trim();
+    const password = document.getElementById("password").value;
+    const confirmPassword = document.getElementById("confirmPassword").value;
+
+    const nameRegex = /^[A-Za-z\s]+$/;
+
+    if (!nameRegex.test(firstName)) 
+    {
+        alert("First name should not contain special characters.");
+        return false;
+    }
+    if (middleName && !nameRegex.test(middleName)) 
+    {
+        alert ("Middle name should not contain special characters."); 
+        return false;
+    }
+    if (!nameRegex.test(lastName)) 
+    {
+        alert ("Last name should not contain special characters.");
+        return false;
+    }
+        
+    //Vlidate age (must age 21+)
+    const today = new Date ();
+    const birthDate = new Date (dob);
+    let age = today.getFullYear() - birthDate.getFullYear();
+    const m = today.getMonth() - birthDate.getMonth();
+    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) 
+    {
+        age--;
+    }
+    if (age < 21) 
+    {
+        alert("You must be atleast 21 years old to register.");
+        return false;
+    }
+    //Confirm password match
+    if (password !==confirmPassword) 
+    {
+        alert ("Passwords do nit match.");
+        return false;
+    }
+
+    //Iff all checks pass
+    alert("Registration succesfull!");
+    document.getElementById("registrationForm").reset();
+    return true;
+}
+    </script>
+</body>
+</html>
