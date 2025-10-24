@@ -1,0 +1,32 @@
+{
+  "profile": {
+    "name": "Huxel Rohn L. Palmea",
+    "role": "Front-End Developer",
+    "location": "Aparri, Philippines"
+  },
+  "skills": [
+    "HTML",
+    "CSS (Flexbox & Grid)",
+    "JavaScript",
+    "Responsive Design",
+    "Figma",
+    "Video Editing"
+  ],
+  "hobbies": [
+    "Photography",
+    "Watching Anime",
+    "Public Speaking"
+  ],
+  "projects": [
+    {
+      "name": "Portfolio Site",
+      "description": "Personal portfolio built with HTML/CSS/JS",
+      "url": "#"
+    },
+    {
+      "name": "UI Workshop Demo",
+      "description": "Prototype and interactive UI created during workshop",
+      "url": "#"
+    }
+  ]
+}
