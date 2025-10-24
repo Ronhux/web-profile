@@ -1,0 +1,280 @@
+/*
+=========================================
+STYLE GUIDE:
+- Main colors: Red (#b74b4b) and Black (#000)
+- Font: 'Poppins', sans-serif
+/* ------------------------------------------------------------------
+  style.css
+
+  Customization instructions:
+  - Colors: change --accent-red to modify the primary red color.
+  - Background: change --bg-dark for page background variations.
+  - Fonts: this file uses 'Poppins' (imported in HTML). Replace in the HTML head to use another Google Font.
+  - Images: replace `hux.png` in the project root with your profile photo. Achievement icons can be added inside .ach-icon img.
+
+  Keep styling consistent with the original red/black theme. The file preserves your original layout and extends
+  it with responsive rules, section styles (About, Skills, Achievements, Contact), and useful comments.
+------------------------------------------------------------------ */
+
+/* Base import and reset */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0;text-decoration:none;border:0;outline:0;font-family:'Poppins',sans-serif}
+html{font-size:62.5%;background-color:transparent}
+/* make body transparent so the finisher-header (fixed behind) is visible */
+body{background-color:transparent;color:#fff;min-height:100vh;overflow-x:hidden}
+
+/* Theme variables (edit here to customize colors) */
+:root{
+  --accent-red:#b74b4b; /* main red */
+  --bg-dark:#000000;     /* page background */
+  --panel:#111111;       /* dark panels */
+  --muted:#d6d6d6;       /* muted text */
+}
+
+/* Header */
+header{position:fixed;top:0;left:0;width:100%;padding:1rem 9%;display:flex;justify-content:space-between;align-items:center;background:transparent;z-index:100}
+.logo{font-size:3rem;color:var(--accent-red);font-weight:800;cursor:pointer;transition:transform .4s}
+.logo:hover{transform:scale(1.05)}
+
+/* mobile menu button */
+.menu-btn{display:none;background:transparent;color:var(--muted);font-size:2.1rem;cursor:pointer}
+
+nav{display:flex;gap:4rem}
+nav a{font-size:1.8rem;color:#fff;font-weight:500;transition:all .25s;border-bottom:3px solid transparent;padding:.2rem 0}
+nav a:hover,nav a.active{color:var(--accent-red);border-bottom:3px solid var(--accent-red)}
+
+/* Sections base spacing */
+section{min-height:100vh;padding:8rem 9%}
+
+/* Home / Hero */
+.home{display:flex;align-items:center;gap:8rem;background:var(--bg-dark);position:relative;overflow:visible}
+.finisher-header{position:fixed;left:0;top:0;right:0;bottom:0;width:100%;height:100vh;z-index:0;pointer-events:none}
+/* Ensure main content sits above the finisher header */
+header, main, section, footer, .home-content, .home-img {position:relative;z-index:2}
+
+/* Make any canvas injected by FinisherHeader fill the container */
+.finisher-header canvas, .finisher-header > canvas {
+  position: absolute !important;
+  left: 0 !important;
+  top: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  inset: 0 !important;
+  display: block !important;
+}
+
+/* Resilient animated background fallback
+   This CSS will display a full-viewport animated gradient + soft moving spots
+   if the FinisherHeader script is missing or fails. It is lightweight and
+   guaranteed to fill the website background. */
+.finisher-header{
+  background: linear-gradient(120deg, #e5383d 0%, rgba(183,75,75,0.9) 40%, #000000 100%);
+  mix-blend-mode: normal; /* use normal blending to ensure consistent color */
+  opacity: 1; /* fully visible */
+  overflow:hidden;
+}
+.finisher-header::before, .finisher-header::after{
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.finisher-header::before{
+  background: radial-gradient(circle at 10% 20%, rgba(255,255,255,0.04), transparent 10%),
+              radial-gradient(circle at 80% 80%, rgba(255,255,255,0.02), transparent 12%);
+  transform: translate3d(0,0,0);
+  animation: finisher-spots 12s linear infinite;
+  mix-blend-mode: overlay;
+}
+.finisher-header::after{
+  background: linear-gradient(90deg, rgba(0,0,0,0.0) 0%, rgba(0,0,0,0.15) 50%, rgba(0,0,0,0.45) 100%);
+  opacity: .28;
+  animation: finisher-shift 18s ease-in-out infinite;
+}
+
+@keyframes finisher-spots{
+  0%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-6%) scale(1.05)}
+  100%{transform:translateY(0) scale(1)}
+}
+@keyframes finisher-shift{
+  0%{transform:translateX(-8%)}
+  50%{transform:translateX(8%)}
+  100%{transform:translateX(-8%)}
+}
+
+/* Reduce animation intensity on small screens to save CPU */
+@media (max-width:720px){
+  .finisher-header::before{animation-duration:24s}
+  .finisher-header::after{animation-duration:30s}
+}
+.home-img img{width:32vw;border-radius:50%;box-shadow:0 0 25px var(--accent-red);cursor:pointer;transition:transform .2s ease}
+.home-img img:hover{transform:scale(1.02)}
+
+.home-content h1{font-size:6rem;font-weight:700;line-height:1.2}
+.home-content h1 span{color:var(--accent-red)}
+.home-content h3{font-size:4rem;margin:.6rem 0 1.2rem;font-weight:700}
+.home-content p{font-size:1.6rem;line-height:1.6;color:var(--muted);max-width:68rem}
+
+.actions{margin-top:1.8rem;display:flex;gap:1.2rem;align-items:center}
+.btn{display:inline-block;padding:1rem 2.6rem;border-radius:4rem;font-size:1.6rem;color:var(--accent-red);background:#000;border:2px solid var(--accent-red);cursor:pointer;transition:all .25s}
+.btn:hover{transform:scale(1.03);background:var(--accent-red);color:#000;box-shadow:0 0 25px var(--accent-red)}
+.btn.hire{background:transparent;color:#fff;border:2px solid rgba(255,255,255,.06)}
+
+.social-icons{margin-top:1.6rem;display:flex;gap:1rem}
+.social-icons a{display:inline-flex;align-items:center;justify-content:center;width:4rem;height:4rem;border-radius:50%;border:.2rem solid var(--accent-red);color:var(--accent-red);font-size:2rem;transition:all .25s}
+.social-icons a:hover{background:var(--accent-red);color:#000;transform:translateY(-6px);box-shadow:0 0 25px var(--accent-red)}
+
+/* Typing text (kept CSS-based approach from your original) */
+.typing-text{font-size:3.4rem;font-weight:600;position:relative}
+.typing-text span{display:inline-block;color:var(--accent-red);font-weight:700}
+.typing-text span.press{transform:translateY(-2px);transition:transform .06s ease}
+.typing-text .pop{display:inline-block;animation:pop .56s ease both}
+@keyframes pop{0%{transform:scale(.98);opacity:0}40%{transform:scale(1.06);opacity:1;text-shadow:0 6px 18px rgba(183,75,75,0.12)}100%{transform:scale(1);opacity:1}}
+/* JS will drive the typing cursor; provide a simple cursor style */
+.typing-text .cursor{display:inline-block;width:2px;background:var(--accent-red);margin-left:6px;animation:blink 900ms steps(2,end) infinite}
+@keyframes blink{50%{opacity:0}}
+
+
+/* CSS-only typing fallback when JS is disabled.
+   This uses the pseudo-element technique and is enabled only when <body> has class "no-js".
+   Note: CSS keyframe content swaps are not fully standard across all browsers, but this provides
+   a visual fallback for environments without JavaScript. */
+body.no-js .typing-text span::before{
+  content: "Web Developer";
+  color:var(--accent-red);
+  animation:words 20s infinite;
+}
+body.no-js .typing-text span::after{
+  content: "";
+  background-color:var(--bg-dark);
+  position:absolute;
+  width:calc(100% + 8px);
+  height:100%;
+  border-left:3px solid var(--bg-dark);
+  right:-8px;
+  animation:cursor .6s infinite;
+}
+@keyframes words{
+  0%,20%{content:"Web Developer"}
+  21%,40%{content:"Front-End Developer"}
+  41%,60%{content:"Web Designer"}
+  61%,80%{content:"Youtuber"}
+  81%,100%{content:"Script Writer"}
+}
+
+/* ABOUT */
+.about h2{font-size:2.6rem;color:#fff;margin-bottom:.4rem}
+.about{display:flex;align-items:center;justify-content:center;text-align:center}
+.about-inner{max-width:84rem;padding:2.6rem}
+.about-title{font-size:3.4rem;margin-bottom:.4rem}
+.about .subtitle{color:var(--accent-red);margin-bottom:1rem;font-size:1.6rem}
+.about .about-text{color:var(--muted);max-width:80rem;font-size:1.9rem;line-height:1.6}
+/* SECTION HEADLINE: large and centered by default */
+section h2{font-size:3.2rem;text-align:center;margin:0 0 1.2rem;color:#fff;letter-spacing:0.6px}
+
+/* Initial hidden state for headings and main content blocks to enable scroll reveal */
+section h2, .about-inner, .skills-grid, .more-skills-grid, .ach-grid, .contact-grid, .home-content, .home-img {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+
+/* When the section itself receives .visible (set by JS), reveal children */
+section.visible h2,
+section.visible .about-inner,
+section.visible .skills-grid,
+section.visible .more-skills-grid,
+section.visible .ach-grid,
+section.visible .contact-grid,
+section.visible .home-content,
+section.visible .home-img {
+  opacity: 1;
+  transform: none;
+}
+
+/* SKILLS */
+.skills h2{font-size:2.6rem;margin-bottom:1.6rem}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;margin-bottom:1.6rem}
+.skill-card{background:linear-gradient(180deg,#1a0b0b,#070707);padding:1.6rem;border-radius:1rem;box-shadow:0 10px 30px rgba(0,0,0,.6);opacity:1;transform:none;transition:transform .25s; border:2px solid rgba(183,75,75,0.18);color:#fff}
+.skill-card-inner{display:flex;flex-direction:column;align-items:flex-start;gap:0.6rem}
+.skill-card .skill-icon{font-size:2.4rem;background:transparent;color:var(--accent-red);width:52px;height:52px;border-radius:10px;display:flex;align-items:center;justify-content:center}
+.skill-card h4{margin:.4rem 0 0.6rem;font-size:1.4rem}
+.skill-card p{color:var(--muted);font-size:1.45rem}
+
+/* Additional skills grid */
+.more-skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:1.2rem}
+.more-skill{background:var(--panel);color:#fff;padding:1rem;border-radius:10px;display:flex;gap:1rem;align-items:flex-start;border:2px solid rgba(183,75,75,0.06);opacity:1;transform:none;transition:transform .25s}
+.more-skill-icon{width:52px;height:52px;border-radius:10px;background:linear-gradient(180deg,rgba(183,75,75,0.12),rgba(183,75,75,0.02));display:flex;align-items:center;justify-content:center;color:var(--accent-red);flex:0 0 52px}
+.more-skill-body h5{margin:0;font-size:1.2rem;color:#fff}
+.more-skill-body .more-skill-desc{margin:.2rem 0 0;color:var(--muted);font-size:1.3rem}
+
+/* ACHIEVEMENTS */
+.achievements h2{font-size:2.6rem;margin-bottom:1rem}
+.ach-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.ach-card{background:linear-gradient(180deg,rgba(255,255,255,0.02),rgba(255,255,255,0.01));padding:1.2rem;border-radius:12px;display:flex;gap:1rem;align-items:flex-start;transition:transform .25s,box-shadow .25s;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+.ach-card:hover{transform:translateY(-8px);box-shadow:0 18px 36px rgba(0,0,0,.6)}
+.ach-icon{width:44px;height:44px;border-radius:10px;background:var(--panel);display:flex;align-items:center;justify-content:center;color:var(--accent-red);font-size:1.1rem}
+.ach-card h4{margin:0;font-size:1.2rem}
+.ach-card p{color:var(--muted);font-size:1.35rem}
+
+/* CONTACT */
+.contact h2{font-size:2.6rem;margin-bottom:1rem}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.6rem;align-items:stretch}
+.contact-item{background:var(--panel);padding:2.4rem;border-radius:14px;opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;min-height:150px;display:flex;flex-direction:column;justify-content:center}
+.contact-item h4{margin-bottom:.8rem;font-size:1.6rem}
+.contact-item p{font-size:1.45rem;color:var(--muted);margin:0}
+.contact-item a{color:var(--accent-red);text-decoration:none}
+.contact-social{display:flex;gap:.8rem;margin-top:.6rem}
+.contact-social a{display:inline-flex;align-items:center;justify-content:center;width:3.6rem;height:3.6rem;border-radius:8px;border:.12rem solid rgba(183,75,75,0.12);color:var(--accent-red);background:transparent}
+.contact-social a i{font-size:1.3rem}
+
+/* Footer */
+footer{padding:2rem 9%;text-align:center;color:var(--muted);border-top:1px solid rgba(255,255,255,.03)}
+
+/* Responsive */
+@media (max-width:1000px){.home{gap:4rem}.home-content h1{font-size:5rem}.home-content h3{font-size:2.5rem}}
+@media (max-width:995px){
+  nav{display:none;position:absolute;top:0;right:0;width:60%;background:#161616;padding:2rem;border-left:3px solid var(--accent-red);border-bottom-left-radius:2rem}
+  nav.active{display:block}
+  nav a{display:block;font-size:2rem;margin:1.2rem 0}
+  .menu-btn{display:block}
+  section{padding:6rem 6%}
+  .home{flex-direction:column;margin:6rem 2rem}
+  .home-img img{width:70vw}
+  .skills-grid,.ach-grid{grid-template-columns:repeat(2,1fr)}
+  .more-skills-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media (max-width:720px){
+  .skills-grid,.ach-grid,.contact-grid{grid-template-columns:1fr}
+  .more-skills-grid{grid-template-columns:1fr}
+  nav{width:80%}
+}
+
+/* Visible state applied by JS to animate elements in */
+.visible{opacity:1 !important;transform:none !important}
+
+/* Back-to-top button */
+.back-to-top{
+  position:fixed;
+  right:2rem;
+  bottom:2rem;
+  width:4.4rem;
+  height:4.4rem;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:var(--accent-red);
+  color:#000;
+  border:0;
+  box-shadow:0 10px 30px rgba(183,75,75,0.15);
+  transform:translateY(12px);
+  opacity:0;
+  transition:opacity .28s ease, transform .28s ease;
+  z-index:60;
+}
+.back-to-top.show{opacity:1;transform:none}
+.back-to-top svg{filter:drop-shadow(0 2px 6px rgba(0,0,0,0.2));}
+
