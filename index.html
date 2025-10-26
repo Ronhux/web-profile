@@ -44,6 +44,7 @@ Open this file in a browser (double-click) to view.
       <nav>
         <a href="#home" class="active">Home</a>
         <a href="#about">About</a>
+        <a href="#works">My Works</a>
         <a href="#skills">Skills</a>
         <a href="#achievements">Education</a>
         <a href="#contact">Contact</a>
@@ -54,7 +55,7 @@ Open this file in a browser (double-click) to view.
     <section id="home" class="home">
       <div class="home-img">
         <!-- Circular profile image (replace with yours) -->
-        <img src="hux.png" alt="Huxel portrait">
+        <img src="Pictures/hux.png" alt="Huxel portrait">
       </div>
 
   <div class="home-content">
@@ -68,7 +69,7 @@ Open this file in a browser (double-click) to view.
         </p>
 
         <div class="actions">
-          <a href="#contact" class="btn hire">Know more about me BEBYBE!</a>
+          <a href="#contact" class="btn">Know more about me BEYBE!</a>
         </div>
 
         <div class="social-icons">
@@ -83,7 +84,7 @@ Open this file in a browser (double-click) to view.
     <!-- ABOUT -->
     <section id="about" class="about">
       <div class="about-inner">
-        <h2 class="about-title">About Me</h2>
+        <h1 class="about-title">About Me</h1>
         <h3 class="subtitle">Front-End Developer</h3>
         <p class="about-text">I am more focused on front-end development as I pursue my Bachelor of Science in Information Technology (BSIT) with a specialization in web development. I have a strong passion for creating visually appealing and creative web designs that reflect my artistic nature.</p>
       </div>
@@ -195,48 +196,141 @@ Open this file in a browser (double-click) to view.
       </div>
     </section>
 
-    <!-- ACHIEVEMENTS / EDUCATION -->
-    <section id="achievements" class="achievements">
-      <h2>My Achievements</h2>
+    
+    <!-- MY WORKS -->
+    <section id="works" class="works">
+      <h1 class="about-title">My Works</h1>
 
-      <div class="ach-grid">
-        <div class="ach-card" data-delay="0">
-          <div class="ach-icon" aria-hidden="true">
-            <!-- SVG badge: certificate -->
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 2l2.4 4.8L19 8l-3.1 2.6L16 16l-4-2-4 2 .1-5.4L5 8l4.6-.8L12 2z" fill="currentColor"/></svg>
-          </div>
-          <h4>Web Design Certificate</h4>
-          <p>Completed an intensive course on responsive web and UI design.</p>
+      <div class="works-carousel" data-interval="3500">
+        <!-- Add your work slides here. Each .work-slide can either contain an <img> or use data-src/data-description attributes.
+             Replace the placeholder images (hux.png) with your own images (e.g., work1.jpg, work2.jpg). -->
+        <div class="work-slide" data-description="I was tasked to create this poster for the CICS-SC page when I was elected as a Board Member of the College of Information and Computing Sciences during the Academic Year 2024–2025.">
+          <img src="Pictures/bm.JPG" alt="Work 1">
         </div>
 
-        <div class="ach-card" data-delay="120">
-          <div class="ach-icon" aria-hidden="true">
-            <!-- SVG badge: leadership -->
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><circle cx="12" cy="8" r="3" fill="currentColor"/><path d="M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6H4z" fill="currentColor"/></svg>
-          </div>
-          <h4>ICT Student Leader</h4>
-          <p>College Representative — active role in student governance.</p>
+        <div class="work-slide" data-description="This was created for the iTouch Publication’s IGP project, iCinema, which offered students the opportunity to watch movies during the Intramurals of the Cagayan State Univerisity.">
+          <img src="Pictures/cinema.png" alt="Work 2">
         </div>
 
-        <div class="ach-card" data-delay="240">
-          <div class="ach-icon" aria-hidden="true">
-            <!-- SVG badge: workshop -->
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect x="3" y="3" width="18" height="14" rx="2" fill="currentColor"/></svg>
+        <div class="work-slide" data-description="As the officer in charge of managing our church’s page, I created this post when the Youth on the Rock Organization held its first Night of Worship in June 2025.">
+          <div class="work-gallery">
+            <div class="work-card">
+              <img src="Pictures/event.JPG" alt="Work 3 - Photo 1">
+            </div>
+
+            <div class="work-card">
+              <img src="Pictures/event1.JPG" alt="Work 3 - Photo 2">
+            </div>
+
+            <div class="work-card">
+              <img src="Pictures/event2.JPG" alt="Work 3 - Photo 3">
+            </div>
           </div>
-          <h4>UI/UX Workshop</h4>
-          <p>Hands-on training creating user-centered interfaces and prototypes.</p>
         </div>
 
-        <div class="ach-card" data-delay="360">
-          <div class="ach-icon" aria-hidden="true">
-            <!-- SVG badge: award -->
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M12 3l3 6 6 .5-4.5 3L18 20 12 17l-6 3 1.5-7.5L3 9.5 9 9 12 3z" fill="currentColor"/></svg>
+        <div class="work-slide" data-description="Created when the youth members of our church graduated from college, as a way to honor their achievements.">
+          <img src="Pictures/grad.JPG" alt="Work 4">
+        </div>
+
+        <div class="work-slide" data-description="This poster was created to inform the youth on social media that our church conducts a youth service every Thursday.">
+          <img src="Pictures/poster.JPG" alt="Work 5">
+        </div>
+        
+        <div class="work-slide" data-description="This set of pubmats was created as part of my duties as a Board Member of the COL-SC, for our Christmas activity held in December.">
+          <div class="work-gallery">
+            <div class="work-card">
+              <img src="Pictures/xmas.JPG" alt="Work 3 - Photo 1">
+            </div>
+
+            <div class="work-card">
+              <img src="Pictures/xmas1.jpg" alt="Work 3 - Photo 2">
+            </div>
+
+            <div class="work-card">
+              <img src="Pictures/xmas2.jpg" alt="Work 3 - Photo 3">
+            </div>
+
+            <div class="work-card">
+              <img src="Pictures/xmas3.jpg" alt="Work 3 - Photo 3">
+            </div>
           </div>
-          <h4>Design Competition</h4>
-          <p>Top 3 placement in inter-college graphic design challenge.</p>
+        </div>
+      </div>
+
+      <div class="work-description"></div>
+
+      <div class="works-controls" aria-hidden="false">
+        <button class="works-prev" aria-label="Previous work">‹</button>
+        <button class="works-next" aria-label="Next work">›</button>
+      </div>
+
+      <!-- Modal that opens when a work is clicked -->
+      <div class="work-modal" hidden>
+        <div class="work-modal-inner">
+          <button class="work-modal-close" aria-label="Close">×</button>
+          <div class="work-modal-media">
+            <img src="" alt="">
+          </div>
+          <div class="work-modal-desc"></div>
         </div>
       </div>
     </section>
+
+      <!--My Achievements Section-->
+    <section id="achievements" class="achievements">
+      <h2>My Achievements</h2>
+      <p class="ach-subtitle">Click each achievements to view the documentation/s or certificate/s.</p>
+      <div class="achievements-levels">
+
+        <!-- Primary Level -->
+        <div class="ach-level" data-cert="Pictures/Primary/elem.jpg,Pictures/Primary/elem1.jpg,Pictures/Primary/elem2.jpg,Pictures/Primary/elem3.jpg,Pictures/Primary/elem4.jpg">
+          <h3>Primary Level</h3>
+          <ul>
+            <li>Graduated at San Antonio Elementary School Year 2017</li>
+            <li>Most Punctual</li>
+            <li>Na Principal's Office one time</li>
+          </ul>
+        </div>
+
+        <!-- Secondary Level -->
+        <div class="ach-level" data-cert="Pictures/Secondary/seco1.jpeg,Pictures/Secondary/seco2.jpeg,Pictures/Secondary/seco3.jpg,Pictures/Secondary/seco4.jpg,Pictures/Secondary/seco5.jpg,Pictures/Secondary/seco6.JPG,Pictures/Secondary/seco7.JPG,Pictures/Secondary/seco8.jpeg">
+          <h3>Secondary Level</h3>
+          <ul>
+            <li>Graduated at Aparri School of Arts and Trades Year 2023</li>
+            <li>Overall With Honors</li>
+            <li>Best Immersant at Orix Metro</li>
+            <li>With Honors Grade 12/TVL - CSS 3rd Quarter</li>
+            <li>With Honors Grade 12/TVL - CSS 2nd Quarter</li>
+            <li>With Honors Grade 12/TVL - CSS 1st Quarter</li>
+            <li>With Honors Grade 12/TVL - CSS 2nd Quarter</li>
+            <li>Na-Guidance Office one time</li>
+            <li>Grade 9 With Honors Classroom 5th Rank</li>
+          </ul>
+        </div>
+
+        <!-- Tertiary Level -->
+        <div class="ach-level" data-cert="Pictures/Tertiary/ter1.jpg,Pictures/Tertiary/ter2.jpg,Pictures/Tertiary/ter3.jpg,Pictures/Tertiary/ter4.jpg,Pictures/Tertiary/ter5.jpg,Pictures/Tertiary/ter6.jpg,Pictures/Tertiary/ter7.jpg,Pictures/Tertiary/ter8.jpg,Pictures/Tertiary/ter9.JPG,Pictures/Tertiary/ter10.JPG,Pictures/Tertiary/ter11.JPG,Pictures/Tertiary/ter12.JPG,Pictures/Tertiary/ter13.jpeg,Pictures/Tertiary/ter14.jpeg,Pictures/Tertiary/ter15.jpeg">
+          <h3>Tertiary Level</h3>
+          <ul>
+            <li>Best Short Film 3rd Runner-up</li>
+            <li>Most Watched Trailer (Entitled "Kaya Pala")</li>
+            <li>Academic Year 2023-2024 Dean's Lister Gaining 93.76 GWA</li>
+            <li>Academic Year 2024-2025 Dean's Lister Gaining 94.90 GWA</li>
+            <li>Recognized Contributions & Service in Information and Computing Sciences (2022-2025)</li>
+          </ul>
+        </div>
+
+        <div class="cert-popup" hidden>
+          <div class="cert-popup-inner">
+            <button class="cert-popup-close" aria-label="Close">×</button>
+            <h3 class="cert-popup-title">Documentations</h3>
+            <div class="cert-gallery"></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
 
     <!-- CONTACT -->
     <section id="contact" class="contact">
@@ -295,6 +389,6 @@ Open this file in a browser (double-click) to view.
     });
     </script>
 
-    <script src="script.js"></script>
+  <script src="script.js"></script>
   </body>
 </html>
