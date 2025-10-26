@@ -1,4 +1,3 @@
-
 // script.js
 // Vanilla JS for: mobile menu toggle, smooth scrolling, reveal-on-scroll and Download CV button
 
@@ -356,7 +355,6 @@ certPopup.addEventListener('click', (e) => {
   }
 });
 
-// ---------------- Fetch and Display Data ----------------
 fetch("data.json")
   .then(response => response.json())
   .then(data => {
@@ -366,38 +364,23 @@ fetch("data.json")
     const { profile, skills, hobbies, projects } = data;
 
     container.innerHTML = `
-      <div class="profile-section">
-        <h3>👤 Profile</h3>
-        <p><strong>Name:</strong> ${profile.name}</p>
-        <p><strong>Role:</strong> ${profile.role}</p>
-        <p><strong>Location:</strong> ${profile.location}</p>
-      </div>
+      <h3>👤 Profile</h3>
+      <p><strong>Name:</strong> ${profile.name}</p>
+      <p><strong>Role:</strong> ${profile.role}</p>
+      <p><strong>Location:</strong> ${profile.location}</p>
 
-      <div class="skills-section">
-        <h3>🧠 Skills</h3>
-        <ul>${skills.map(skill => `<li>${skill}</li>`).join("")}</ul>
-      </div>
+      <h3>🧠 Skills</h3>
+      <ul>${skills.map(skill => `<li>${skill}</li>`).join("")}</ul>
 
-      <div class="hobbies-section">
-        <h3>🎯 Hobbies</h3>
-        <ul>${hobbies.map(hobby => `<li>${hobby}</li>`).join("")}</ul>
-      </div>
+      <h3>🎯 Hobbies</h3>
+      <ul>${hobbies.map(hobby => `<li>${hobby}</li>`).join("")}</ul>
 
-      <div class="projects-section">
-        <h3>💼 Projects</h3>
-        <ul>
-          ${projects.map(project => `
-            <li>
-              <strong>${project.name}</strong> — ${project.description}
-              <br><a href="${project.url}" target="_blank" style="color: var(--accent-red);">View Project</a>
-            </li>
-          `).join("")}
-        </ul>
-      </div>
+      <h3>💼 Projects</h3>
+      <ul>${projects.map(p => `<li><strong>${p.name}</strong> — ${p.description}</li>`).join("")}</ul>
     `;
   })
   .catch(error => {
-    console.error("Error fetching data:", error);
-    document.getElementById("data-output").textContent = "Failed to load data.";
+    console.error("Error loading data:", error);
+    document.getElementById("data-output").textContent = "Could not load data.";
   });
 
