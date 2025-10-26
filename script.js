@@ -1,5 +1,3 @@
-// script.js
-// Vanilla JS for: mobile menu toggle, smooth scrolling, reveal-on-scroll and Download CV button
 
 // Mobile menu toggle — toggles `nav.active` (CSS shows/hides the mobile menu)
 const menuBtn = document.querySelector('.menu-btn');
@@ -383,4 +381,3 @@ fetch("data.json")
     console.error("Error loading data:", error);
     document.getElementById("data-output").textContent = "Could not load data.";
   });
-
