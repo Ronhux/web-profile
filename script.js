@@ -381,3 +381,5 @@ fetch("data.json")
     console.error("Error loading data:", error);
     document.getElementById("data-output").textContent = "Could not load data.";
   });
+  
+container.classList.add("show");
