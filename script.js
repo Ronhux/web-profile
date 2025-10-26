@@ -1,3 +1,4 @@
+
 // script.js
 // Vanilla JS for: mobile menu toggle, smooth scrolling, reveal-on-scroll and Download CV button
 
@@ -121,7 +122,7 @@ staggerElements.forEach((el, i) => {
 });
 
 // Observe elements that should animate: skills, achievement cards, contact items, and the main sections
-document.querySelectorAll('.skill, .ach-card, .contact-item, .home-content, .home-img, .about, .skills, .achievements, .contact').forEach(el => {
+document.querySelectorAll('.skill, .ach-card, .contact-item, .home-content, .home-img, .about, .skills, .achievements, .contact, .works').forEach(el => {
   // ensure there's a numeric data-delay for observer
   if (!el.dataset.delay) el.dataset.delay = '0';
   observer.observe(el);
@@ -201,3 +202,157 @@ if (backBtn) {
   });
   backBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
 }
+
+// ----------------- My Works carousel + modal -----------------
+function initWorksCarousel() {
+  const carousel = document.querySelector('.works-carousel');
+  if (!carousel) return;
+
+  const slides = Array.from(carousel.querySelectorAll('.work-slide'));
+  const prevBtn = document.querySelector('.works-prev');
+  const nextBtn = document.querySelector('.works-next');
+  const interval = parseInt(carousel.dataset.interval || '4000', 10);
+  const descBox = document.querySelector('.work-description');
+  // start at -1 so calling show(0) will not early-return and will make the first slide visible
+  let idx = -1;
+  let timer = null;
+
+  function show(i) {
+  if (!slides.length) return;
+  const prev = slides[idx];
+  const nextSlide = slides[i];
+  if (prev === nextSlide) return;
+
+  // exit animation for previous
+  if (prev) {
+    prev.classList.remove('entering');
+    prev.classList.add('exiting');
+    prev.classList.remove('visible');
+    setTimeout(() => {
+      prev.classList.remove('exiting');
+    }, 900);
+  }
+
+  // enter animation for next
+  if (nextSlide) {
+    nextSlide.classList.remove('exiting');
+    nextSlide.classList.add('entering');
+    nextSlide.classList.add('visible');
+    setTimeout(() => {
+      nextSlide.classList.remove('entering');
+    }, 900);
+
+    // ✨ update description text
+    if (descBox) {
+      descBox.classList.remove('show');
+      setTimeout(() => {
+        descBox.textContent = nextSlide.dataset.description || '';
+        descBox.classList.add('show');
+      }, 200); // slight delay for smoother effect
+    }
+  }
+
+  idx = i;
+}
+
+
+  function goNext() { show((idx + 1) % slides.length); }
+  function goPrev() { show((idx - 1 + slides.length) % slides.length); }
+
+  // autoplay
+  function start() { stop(); timer = setInterval(goNext, interval); }
+  function stop() { if (timer) { clearInterval(timer); timer = null; } }
+
+  // initialize images if slides use data-src (support both patterns)
+  slides.forEach(s => {
+    const img = s.querySelector('img');
+    const dataSrc = s.dataset.src;
+    if (!img && dataSrc) {
+      const iEl = document.createElement('img');
+      iEl.src = dataSrc;
+      s.appendChild(iEl);
+    }
+  });
+
+  // show first slide
+  if (slides.length) show(0);
+
+  // controls
+  if (nextBtn) nextBtn.addEventListener('click', () => { goNext(); stop(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { goPrev(); stop(); });
+
+  // pause on hover
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+
+  // click to open modal
+  const modal = document.querySelector('.work-modal');
+  const modalImg = modal ? modal.querySelector('.work-modal-media img') : null;
+  const modalDesc = modal ? modal.querySelector('.work-modal-desc') : null;
+  const modalClose = modal ? modal.querySelector('.work-modal-close') : null;
+
+  slides.forEach((s, i) => {
+    s.addEventListener('click', () => {
+      if (!modal) return;
+      const imgEl = s.querySelector('img');
+      const src = imgEl ? imgEl.src : s.dataset.src || '';
+      const desc = s.dataset.description || '';
+      if (modalImg) { modalImg.src = src; modalImg.alt = s.querySelector('img') ? s.querySelector('img').alt || 'Work' : 'Work'; }
+      if (modalDesc) modalDesc.textContent = desc;
+      modal.hidden = false;
+      document.body.style.overflow = 'hidden';
+    });
+  });
+
+  if (modalClose) modalClose.addEventListener('click', () => {
+    if (!modal) return;
+    modal.hidden = true; document.body.style.overflow = '';
+  });
+
+  // close modal when clicking outside inner
+  if (modal) modal.addEventListener('click', (e) => {
+    if (e.target === modal) { modal.hidden = true; document.body.style.overflow = ''; }
+  });
+
+  start();
+}
+
+// init on DOM ready
+document.addEventListener('DOMContentLoaded', initWorksCarousel);
+
+// ---------------- Certificate Popup (Gallery Style) ----------------
+document.querySelectorAll('.ach-level').forEach(level => {
+  level.addEventListener('click', () => {
+    const certPopup = document.querySelector('.cert-popup');
+    const gallery = document.querySelector('.cert-gallery');
+    const certList = level.dataset.cert ? level.dataset.cert.split(',') : [];
+
+    gallery.innerHTML = ''; // Clear previous images
+
+    certList.forEach(src => {
+      const img = document.createElement('img');
+      img.src = src.trim();
+      img.alt = 'Certificate';
+      gallery.appendChild(img);
+    });
+
+    certPopup.hidden = false;
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+const certPopup = document.querySelector('.cert-popup');
+const certPopupClose = document.querySelector('.cert-popup-close');
+
+certPopupClose.addEventListener('click', () => {
+  certPopup.hidden = true;
+  document.body.style.overflow = '';
+});
+
+certPopup.addEventListener('click', (e) => {
+  if (e.target === certPopup) {
+    certPopup.hidden = true;
+    document.body.style.overflow = '';
+  }
+});
+
