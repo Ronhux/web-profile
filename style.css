@@ -569,6 +569,69 @@ section.visible .home-img {
   .work-modal-media{width:100%}
 }
 
+/* Fetched Data Section */
+.fetched-data {
+  background: var(--bg-dark);
+  padding: 6rem 9%;
+  color: #fff;
+  text-align: center;
+}
+
+.fetched-data h2 {
+  font-size: 2.6rem;
+  margin-bottom: 2rem;
+  color: var(--accent-red);
+}
+
+.data-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.data-output {
+  background: var(--panel);
+  border: 2px solid rgba(183, 75, 75, 0.2);
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  max-width: 700px;
+  width: 100%;
+  text-align: left;
+  color: var(--muted);
+  font-size: 1.6rem;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.data-output:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(183, 75, 75, 0.25);
+}
+
+.data-output h3 {
+  color: var(--accent-red);
+  margin-bottom: 0.8rem;
+}
+
+.data-output ul {
+  list-style: none;
+  padding: 0;
+  margin: 0.5rem 0 1.2rem;
+}
+
+.data-output ul li {
+  padding-left: 1.4rem;
+  position: relative;
+  margin-bottom: 0.4rem;
+}
+
+.data-output ul li::before {
+  content: "•";
+  color: var(--accent-red);
+  position: absolute;
+  left: 0;
+}
+
 /* Footer */
 footer
 {
