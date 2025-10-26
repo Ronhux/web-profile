@@ -8,24 +8,19 @@
     "HTML",
     "CSS (Flexbox & Grid)",
     "JavaScript",
-    "Responsive Design",
+    "Graphic Designer",
     "Video Editing"
   ],
   "hobbies": [
     "Photography",
     "Watching Anime",
-    "Public Speaking"
+    "Public Speaking?"
   ],
   "projects": [
     {
-      "name": "Portfolio Site",
+      "name": "Web Profile",
       "description": "Personal portfolio built with HTML/CSS/JS",
       "url": "#"
     },
-    {
-      "name": "UI Workshop Demo",
-      "description": "Prototype and interactive UI created during workshop",
-      "url": "#"
-    }
   ]
 }
