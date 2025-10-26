@@ -1,3 +1,19 @@
+<!--
+README: How to customize this portfolio page
+
+- Replace the name: change the text nodes containing "Huxel" and "Ron" in the hero and footer.
+- Replace the profile image: swap `hux.png` with your image (keep same name or update the src).
+- Update the CV: place a PDF named `Huxel_CV.pdf` in the same folder to enable PDF download. Otherwise the button will download a simple text CV.
+- Colors/fonts: open `style.css` and change the CSS variables near the top to adjust the red (#b74b4b), black, and other accents.
+- Add/remove skills, achievements and contact info directly inside the HTML sections below.
+
+Files in this folder:
+- index.html (this file)
+- style.css (styles)
+- script.js (vanilla JS for menu, animations, CV download)
+
+Open this file in a browser (double-click) to view.
+-->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -176,11 +192,11 @@
     </section>
 
     <section id="fetched-data" class="fetched-data">
-      <h2>Loaded Profile & Data</h2>
       <div class="data-container">
-        <div id="data-output" class="data-output">Loading data...</div>
+       <div id="data-output" class="data-output">Could not load data.</div>
       </div>
     </section>
+
 
 
     
