@@ -2,7 +2,7 @@
   "profile": {
     "name": "Huxel Rohn L. Palmea",
     "role": "Front-End Developer",
-    "location": "Aparri, Philippines"
+    "location": "127B Loriga Gallarza Street, San Antonio, Aparri, Cagayan, Philippines"
   },
   "skills": [
     "HTML",
@@ -21,7 +21,11 @@
       "name": "Web Profile",
       "description": "Personal portfolio built with HTML/CSS/JS",
       "url": "#"
+    },
+    {
+      "name": "Online Banking",
+      "description": "Online banking system built with PHP and database integration",
+      "url": "#"
     }
   ]
 }
-
