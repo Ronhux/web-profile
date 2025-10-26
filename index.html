@@ -1,19 +1,3 @@
-<!--
-README: How to customize this portfolio page
-
-- Replace the name: change the text nodes containing "Huxel" and "Ron" in the hero and footer.
-- Replace the profile image: swap `hux.png` with your image (keep same name or update the src).
-- Update the CV: place a PDF named `Huxel_CV.pdf` in the same folder to enable PDF download. Otherwise the button will download a simple text CV.
-- Colors/fonts: open `style.css` and change the CSS variables near the top to adjust the red (#b74b4b), black, and other accents.
-- Add/remove skills, achievements and contact info directly inside the HTML sections below.
-
-Files in this folder:
-- index.html (this file)
-- style.css (styles)
-- script.js (vanilla JS for menu, animations, CV download)
-
-Open this file in a browser (double-click) to view.
--->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -189,12 +173,15 @@ Open this file in a browser (double-click) to view.
           </div>
         </div>
       </div>
+    </section>
 
-      <!-- Dynamic data loaded via fetch() -->
-      <div id="dynamic-data" class="dynamic-data" data-delay="1080">
-        <h3>Loading additional data…</h3>
+    <section id="fetched-data" class="fetched-data">
+      <h2>Loaded Profile & Data</h2>
+      <div class="data-container">
+        <div id="data-output" class="data-output">Loading data...</div>
       </div>
     </section>
+
 
     
     <!-- MY WORKS -->
@@ -283,7 +270,7 @@ Open this file in a browser (double-click) to view.
       <div class="achievements-levels">
 
         <!-- Primary Level -->
-        <div class="ach-level" data-cert="Pictures/Primary/elem.JPG,Pictures/Primary/elem1.JPG,Pictures/Primary/elem2.JPG,Pictures/Primary/elem3.JPG,Pictures/Primary/elem4.JPG">
+        <div class="ach-level" data-cert="Pictures/Primary/elem.jpg,Pictures/Primary/elem1.jpg,Pictures/Primary/elem2.jpg,Pictures/Primary/elem3.jpg,Pictures/Primary/elem4.jpg">
           <h3>Primary Level</h3>
           <ul>
             <li>Graduated at San Antonio Elementary School Year 2017</li>
@@ -353,13 +340,6 @@ Open this file in a browser (double-click) to view.
             <a href="https://www.instagram.com/ronluvzw_21/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
           </p>
         </div>
-      </div>
-    </section>
-
-    <section id="fetched-data" class="fetched-data">
-      <h2>Fetched Profile Data</h2>
-      <div class="data-container">
-        <div id="data-output" class="data-output">Loading data...</div>
       </div>
     </section>
 
