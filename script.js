@@ -356,3 +356,48 @@ certPopup.addEventListener('click', (e) => {
   }
 });
 
+// ---------------- Fetch and Display Data ----------------
+fetch("data.json")
+  .then(response => response.json())
+  .then(data => {
+    const container = document.getElementById("data-output");
+    if (!container) return;
+
+    const { profile, skills, hobbies, projects } = data;
+
+    container.innerHTML = `
+      <div class="profile-section">
+        <h3>👤 Profile</h3>
+        <p><strong>Name:</strong> ${profile.name}</p>
+        <p><strong>Role:</strong> ${profile.role}</p>
+        <p><strong>Location:</strong> ${profile.location}</p>
+      </div>
+
+      <div class="skills-section">
+        <h3>🧠 Skills</h3>
+        <ul>${skills.map(skill => `<li>${skill}</li>`).join("")}</ul>
+      </div>
+
+      <div class="hobbies-section">
+        <h3>🎯 Hobbies</h3>
+        <ul>${hobbies.map(hobby => `<li>${hobby}</li>`).join("")}</ul>
+      </div>
+
+      <div class="projects-section">
+        <h3>💼 Projects</h3>
+        <ul>
+          ${projects.map(project => `
+            <li>
+              <strong>${project.name}</strong> — ${project.description}
+              <br><a href="${project.url}" target="_blank" style="color: var(--accent-red);">View Project</a>
+            </li>
+          `).join("")}
+        </ul>
+      </div>
+    `;
+  })
+  .catch(error => {
+    console.error("Error fetching data:", error);
+    document.getElementById("data-output").textContent = "Failed to load data.";
+  });
+
