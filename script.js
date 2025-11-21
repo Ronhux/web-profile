@@ -1,12 +1,7 @@
 
-// Mobile menu toggle — toggles `nav.active` (CSS shows/hides the mobile menu)
+// Simple nav reference for anchor behavior
 const menuBtn = document.querySelector('.menu-btn');
 const nav = document.querySelector('nav');
-if (menuBtn) {
-  menuBtn.addEventListener('click', () => {
-    nav.classList.toggle('active');
-  });
-}
 
 // Smooth scrolling for same-page anchors and closing mobile nav when a link is clicked
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
@@ -219,7 +214,8 @@ function initWorksCarousel() {
   const prev = slides[idx];
   const nextSlide = slides[i];
   if (prev === nextSlide) return;
-
+  // stop any gallery cycles on the previous slide
+  if (prev) stopGalleryCycleForSlide(prev);
   // exit animation for previous
   if (prev) {
     prev.classList.remove('entering');
@@ -247,10 +243,59 @@ function initWorksCarousel() {
         descBox.classList.add('show');
       }, 200); // slight delay for smoother effect
     }
+
+    // start stacked gallery cycling for the newly visible slide
+    startGalleryCycleForSlide(nextSlide);
   }
 
   idx = i;
 }
+
+  // --- Stacked gallery support ---
+  function setGalleryPositions(gallery, rotation) {
+    const cards = Array.from(gallery.querySelectorAll('.work-card'));
+    const n = cards.length;
+    cards.forEach((card, i) => {
+      const pos = (i - rotation + n) % n;
+      card.style.setProperty('--pos', String(pos));
+      card.classList.toggle('front', pos === 0);
+      card.style.zIndex = String(n - pos);
+    });
+  }
+
+  function startGalleryCycleForGallery(gallery) {
+    if (!gallery) return;
+    const cards = Array.from(gallery.querySelectorAll('.work-card'));
+    if (cards.length <= 1) return;
+    if (gallery._stackTimer) return; // already running
+    gallery.classList.add('stacked');
+    gallery._rotation = 0;
+    setGalleryPositions(gallery, 0);
+    gallery._stackTimer = setInterval(() => {
+      gallery._rotation = (gallery._rotation + 1) % cards.length;
+      setGalleryPositions(gallery, gallery._rotation);
+    }, 3000);
+  }
+
+  function stopGalleryCycleForGallery(gallery) {
+    if (!gallery) return;
+    if (gallery._stackTimer) {
+      clearInterval(gallery._stackTimer);
+      gallery._stackTimer = null;
+    }
+  }
+
+  function startGalleryCycleForSlide(slide) {
+    if (!slide) return;
+    const galleries = Array.from(slide.querySelectorAll('.work-gallery'));
+    galleries.forEach(g => startGalleryCycleForGallery(g));
+  }
+
+  function stopGalleryCycleForSlide(slide) {
+    if (!slide) return;
+    const galleries = Array.from(slide.querySelectorAll('.work-gallery'));
+    galleries.forEach(g => stopGalleryCycleForGallery(g));
+  }
 
 
   function goNext() { show((idx + 1) % slides.length); }
